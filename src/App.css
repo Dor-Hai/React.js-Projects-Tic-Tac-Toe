@@ -39,6 +39,10 @@ button:hover {
 .game-rect {
   position: relative;
   width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
 }
 
 .game-rect:after {
@@ -53,4 +57,8 @@ button:hover {
 
 .game-rect:nth-child(2n) {
     background: #868686;
+}
+
+.game-rect.highlight {
+  background: #1ee38e;
 }

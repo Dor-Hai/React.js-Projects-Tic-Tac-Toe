@@ -1,14 +1,14 @@
-import './GameRect.css';
-
-export default function GameRect({id, handleChoice, disabled}) {
+export default function GameRect({rect, handleChoice, changeTurns}) {
+  const {id, selected, mark, highlight} = rect;
 
   const handleClick = () => {
-    if(!disabled){
+    if(!selected){
       handleChoice(id);
+      changeTurns();
     }
   }
 
   return (
-    <div className='game-rect' onClick={handleClick}></div>
+    <div className={highlight ? 'game-rect highlight' : 'game-rect'} onClick={handleClick}>{mark}</div>
   )
 }
