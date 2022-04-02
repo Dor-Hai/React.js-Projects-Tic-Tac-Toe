@@ -69,13 +69,10 @@ function App() {
         handleWin(1, each);
       } else if (playerTwoRects.includes(each[0]) && playerTwoRects.includes(each[1]) && playerTwoRects.includes(each[2])) {
         handleWin(2, each);
-      } else if(rect.every(each => each.mark !== null)){
+      } else if(rect.every(each => each.mark !== null && each.highlight !== false)){
         handleTie();
       }
     });
-
-    
-
   }
 
   const handleWin = (player, rects) => {
