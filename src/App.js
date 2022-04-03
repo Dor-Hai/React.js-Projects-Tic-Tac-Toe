@@ -26,7 +26,7 @@ function App() {
     {id: 7, selected: false, mark: null, highlight: false},
     {id: 8, selected: false, mark: null, highlight: false},
     {id: 9, selected: false, mark: null, highlight: false},
-  ])
+  ]);
 
   const changeTurns = () => {
     if(turn === 1){
@@ -64,15 +64,17 @@ function App() {
       .filter(each => each.selected === true && each.mark === 'O')
       .map(each => each.id);
 
-    winConditions.forEach(each => {
-      if(playerOneRects.includes(each[0]) && playerOneRects.includes(each[1]) && playerOneRects.includes(each[2])) {
-        handleWin(1, each);
-      } else if (playerTwoRects.includes(each[0]) && playerTwoRects.includes(each[1]) && playerTwoRects.includes(each[2])) {
-        handleWin(2, each);
-      } else if(rect.every(each => each.mark !== null && each.highlight === false)){
+    for (let condition of winConditions) {
+      if(playerOneRects.includes(condition[0]) && playerOneRects.includes(condition[1]) && playerOneRects.includes(condition[2])) {
+        handleWin(1, condition);
+        break;
+      } else if (playerTwoRects.includes(condition[0]) && playerTwoRects.includes(condition[1]) && playerTwoRects.includes(condition[2])) {
+        handleWin(2, condition);
+        break;
+      } else if(rect.every(each => each.selected === true && each.highlight === false)){
         handleTie();
       }
-    });
+    };
   }
 
   const handleWin = (player, rects) => {
